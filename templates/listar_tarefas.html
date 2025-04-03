@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block body %}
+    <h1 class="text-center text-5xl font-bold mt-[71px] mb-[31px]">Lista de Tarefas</h1>
+    <div class="mx-60 mt-11 ">
+        {% for task in tasks %}
+
+
+            <div class=" border-black border-[3px] rounded-[10px] p-4 mb-10">
+
+                <div class="flex items-center">
+
+                    <!-- imagem -->
+                    <img src="{{ url_for('static', filename='uploads/' + task.imagem) }}" alt="Imagem da tarefa" class="w-40 h-40 mt-2">
+
+                    <div class="ml-3">
+
+                        <!-- titulo  -->
+                        <div class="flex gap-3">
+                            <p class=" text-[25px] font-bold">Título:</p>
+                            <p class=" text-[25px]">{{ task.titulo }}</p>
+                        </div>
+                        
+                        <!-- urgencia -->
+                        <div class="flex gap-3">
+                            <p class=" text-[25px] font-bold">Urgência:</p>
+                            <p class=" text-[25px]">{{ task.urgencia }}</p>
+                        </div>
+                        
+                        <!-- descriçao -->
+                        <div class="flex gap-3">
+                            <p class=" text-[25px] font-bold">Descrição:</p>
+                            <p class=" text-[25px]">{{ task.descricao }}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- editar e remover -->
+                <div class="flex gap-3 justify-end mt-5">
+                    <a href="/editar_tarefas/{{ loop.index0 }}" class="text-blue-500 text-[25px]">Editar <i class="bi bi-pencil"></i></a>
+                    <p class=" text-[25px]">|</p>
+                    <a href="/remover_tarefas/{{ loop.index0 }}" class="text-red-500 text-[25px]">Remover <i class="bi bi-trash3"></i></a>   
+                </div>
+                    
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
